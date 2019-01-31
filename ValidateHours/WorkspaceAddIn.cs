@@ -49,6 +49,7 @@ namespace ValidateHours
         /// <param name="ActionName">The name of the Workspace Rule Action that was invoked.</param>
         public void RuleActionInvoked(string ActionName)
         {
+
             try
             {
                 if (ActionName == "ValidateHours")
@@ -83,39 +84,38 @@ namespace ValidateHours
                             atdtime = gen.DataValue.Value.ToString();
                         }
                     }
+                    gContext.LogMessage("ATAL" + ata.Length + "ATATimeL" + atatime.Length + "ATDL" + atd.Length + "ATDTimeL" + atatime.Length);
                     if (!string.IsNullOrEmpty(ata) && !string.IsNullOrEmpty(atatime) && !string.IsNullOrEmpty(ata) && !string.IsNullOrEmpty(atatime))
                     {
-                        ATA = DateTime.Parse(ata);
-                        ATA = DateTime.Parse(ATA.ToString("yyyy-MM-dd") + " " + atatime);
-                        ATD = DateTime.Parse(atd);
-                        ATD = DateTime.Parse(ATD.ToString("yyyy-MM-dd") + " " + atdtime);
-                        gContext.LogMessage(ATA.ToString() + ":" + ATD.ToString());
-                        if (ATD < ATA)
+                        if (ata.Length == 25 && atd.Length == 25 && atatime.Length == 5 && atdtime.Length == 5 && atdtime.Contains(":") && atatime.Contains(":"))
                         {
-                            val = 1;
-                            //MessageBox.Show("ATA Date is greater than ATD, please check.");
+                            ATA = DateTime.Parse(ata);
+                            ATA = DateTime.Parse(ATA.ToString("yyyy-MM-dd") + " " + atatime);
+                            ATD = DateTime.Parse(atd);
+                            ATD = DateTime.Parse(ATD.ToString("yyyy-MM-dd") + " " + atdtime);
+                           
+                            gContext.LogMessage("ATA: " + ATA.ToString() + " ATD: " + ATD.ToString());
+                            if (ATD < ATA)
+                            {
+                                val = 1;
+                                //MessageBox.Show("ATA Date is greater than ATD, please check.");
 
+                            }
+                            if (ATA < DateTime.Today)
+                            {
+                                valday = 1;
+                                //MessageBox.Show("ATA Date is less than today, please check.");
+                            }
                         }
-                        if (ATA < DateTime.Today)
-                        {
-                            valday = 1;
-                            //MessageBox.Show("ATA Date is less than today, please check.");
-                        }
-
                     }
                     foreach (IGenericField gen in genericFields)
                     {
                         if (gen.Name == "ValidateATA_ATD")
                         {
-
-                         
-
                             gen.DataValue.Value = val;
                         }
                         if (gen.Name == "ValidateATA")
                         {
-                          
-                          
                             gen.DataValue.Value = valday;
                         }
                     }

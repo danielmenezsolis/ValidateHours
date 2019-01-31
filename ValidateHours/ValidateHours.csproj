@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ValidateHours</RootNamespace>
     <AssemblyName>ValidateHours</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RightNow.AddIns.AddInViews">
-      <HintPath>..\..\..\..\AppData\Roaming\RightNow_Technologies\iccsmx\18.8.1271.262\AddInPipeline\AddInViews\RightNow.AddIns.AddInViews.dll</HintPath>
+      <HintPath>..\..\..\..\AppData\Roaming\RightNow_Technologies\iccsmx\18.11.1288.274\AddInPipeline\AddInViews\RightNow.AddIns.AddInViews.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.AddIn">
